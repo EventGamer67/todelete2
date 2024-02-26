@@ -44,6 +44,12 @@ abstract class Fa {
   static final TextStyle gray2_400_14 = GoogleFonts.roboto(
       fontSize: 14, fontWeight: FontWeight.w400, color: Ca.gray2);
 
+  static final TextStyle gray2_400_12 = GoogleFonts.roboto(
+      fontSize: 12, fontWeight: FontWeight.w400, color: Ca.gray2);
+
+  static final TextStyle gray1_400_12 = GoogleFonts.roboto(
+      fontSize: 12, fontWeight: FontWeight.w400, color: Ca.gray1);
+
   static final TextStyle gray1_500_14 = GoogleFonts.roboto(
       fontSize: 14, fontWeight: FontWeight.w500, color: Ca.gray1);
 

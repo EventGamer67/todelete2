@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:todelete2/domain/services/profile_provider.dart';
 import 'package:todelete2/presentation/styles/fonts.dart';
 import 'package:todelete2/presentation/styles/themes.dart';
+import 'package:todelete2/presentation/widgets/myappbar_widget.dart';
 
 class ProfileWrapper extends StatelessWidget {
   const ProfileWrapper({super.key});
@@ -13,7 +15,7 @@ class ProfileWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => ProfileProvider(),
-      child: ProfilePage(),
+      child: const ProfilePage(),
     );
   }
 }
@@ -32,19 +34,7 @@ class _ProfilePageState extends State<ProfilePage> {
     ProfileProvider provider = context.watch<ProfileProvider>();
     return Scaffold(
       backgroundColor: themeProvider.isDark ? Ca.prishade1 : Colors.white,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        leading: null,
-        shadowColor: Colors.black,
-        surfaceTintColor: themeProvider.isDark ? Ca.prishade2 : Colors.white,
-        centerTitle: true,
-        backgroundColor: themeProvider.isDark ? Ca.prishade2 : Colors.white,
-        title: Text(
-          "Profile",
-          style: Fa.gray2_500_16,
-        ),
-        elevation: 2,
-      ),
+      appBar: const MyAppBar(tittle: "Profile", back: false,),
       body: SafeArea(
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
@@ -70,69 +60,79 @@ class _ProfilePageState extends State<ProfilePage> {
                     ListView.builder(
                         shrinkWrap: true,
                         itemCount: provider.tiles.length,
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
                           return Column(
                             children: [
-                              Container(
-                                padding: EdgeInsets.symmetric(horizontal: 12),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    SvgPicture.asset(
-                                      provider.tiles[index].image,
+                              GestureDetector(
+                                onTap: () =>
+                                    provider.tapTile(context,provider.tiles[index].tag),
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12),
+                                  height: provider.tiles[index].height,
+                                  decoration: BoxDecoration(
                                       color: themeProvider.isDark
-                                          ? provider.tiles[index].darkColor
-                                          : provider.tiles[index].lightcolor,
-                                    ),
-                                    SizedBox(
-                                      width: 9,
-                                    ),
-                                    Expanded(
-                                        child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          provider.tiles[index].tittle,
-                                          style: Fa.text4_500_16.copyWith(
-                                              color: themeProvider.isDark
-                                                  ? Colors.white
-                                                  : Ca.text4),
-                                        ),
-                                        Text(
-                                          provider.tiles[index].des,
-                                          style: Fa.gray2_400_14.copyWith(
-                                              fontSize: 12,
-                                              color: themeProvider.isDark
-                                                  ? Colors.white
-                                                  : Ca.gray2),
-                                        ),
-                                      ],
-                                    )),
-                                    SvgPicture.asset(
+                                          ? Ca.prishade2
+                                          : Colors.white,
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color:
+                                                Colors.black.withOpacity(0.15),
+                                            offset: const Offset(0, 2),
+                                            blurRadius: 5)
+                                      ]),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      SvgPicture.asset(
+                                        provider.tiles[index].image,
                                         color: themeProvider.isDark
-                                            ? Colors.white
-                                            : Ca.text4,
-                                        "assets/images/Vector (14).svg")
-                                  ],
+                                            ? provider.tiles[index].darkColor
+                                            : provider.tiles[index].lightcolor,
+                                      ),
+                                      const SizedBox(
+                                        width: 9,
+                                      ),
+                                      Expanded(
+                                          child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            provider.tiles[index].tittle,
+                                            style: Fa.text4_500_16.copyWith(
+                                                color: themeProvider.isDark
+                                                    ? Colors.white
+                                                    : Ca.text4),
+                                          ),
+                                          provider.tiles[index].des != null
+                                              ? Text(
+                                                  provider.tiles[index].des!,
+                                                  style: Fa.gray2_400_14
+                                                      .copyWith(
+                                                          fontSize: 12,
+                                                          color: themeProvider
+                                                                  .isDark
+                                                              ? Colors.white
+                                                              : Ca.gray2),
+                                                )
+                                              : const SizedBox()
+                                        ],
+                                      )),
+                                      SvgPicture.asset(
+                                          color: themeProvider.isDark
+                                              ? Colors.white
+                                              : Ca.text4,
+                                          "assets/images/Vector (14).svg")
+                                    ],
+                                  ),
                                 ),
-                                height: 50,
-                                decoration: BoxDecoration(
-                                    color: themeProvider.isDark
-                                        ? Ca.prishade2
-                                        : Colors.white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: Colors.black.withOpacity(0.15),
-                                          offset: const Offset(0, 2),
-                                          blurRadius: 5)
-                                    ]),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 12,
                               )
                             ],
@@ -171,7 +171,7 @@ class ThemeSwitchBlock extends StatelessWidget {
             height: 35,
             child: FittedBox(
               fit: BoxFit.fitHeight,
-              child: Switch(
+              child: Switch.adaptive(
                 inactiveThumbColor: Colors.white,
                 inactiveTrackColor: Ca.gray2,
                 value: themeProvider.isDark,

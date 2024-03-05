@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:todelete2/presentation/screens/send_a_package.dart';
 
 class HomePageProvider extends ChangeNotifier {
+  onTileTap(String tag, BuildContext context) {
+    switch (tag) {
+      case "send":
+        {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const SendAPackageWrapper()));
+        }
+    }
+  }
+
   List<HomeTileModel> tiles = [
     HomeTileModel(
         image: "assets/images/healthicons_call-centre.svg",
@@ -12,7 +23,7 @@ class HomePageProvider extends ChangeNotifier {
         image: "assets/images/codicon_package.svg",
         tittle: "Send a package",
         des: "Request for a driver to pick up or deliver your package for you",
-        tag: "customer"),
+        tag: "send"),
     HomeTileModel(
         image: "assets/images/Vector-2.svg",
         tittle: "Fund your wallet",

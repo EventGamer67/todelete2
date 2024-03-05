@@ -11,22 +11,22 @@ class MainProvider extends ChangeNotifier {
         name: "Home",
         activeIcon: "assets/images/house-2 (2).svg",
         deactiveIcon: "assets/images/vuesax_linear_house-2.svg",
-        page: HomePageWrapper()),
+        page: const HomePageWrapper()),
     BarItem(
         name: "Wallet",
         activeIcon: "assets/images/vuesax_linear_wallet-3 (3).svg",
         deactiveIcon: "assets/images/vuesax_linear_wallet-3 (2).svg",
-        page: Placeholder()),
+        page: const Placeholder()),
     BarItem(
         name: "Track",
         activeIcon: "assets/images/vuesax_linear_smart-car (3).svg",
         deactiveIcon: "assets/images/vuesax_linear_smart-car (2).svg",
-        page: Placeholder()),
+        page: const Placeholder()),
     BarItem(
         name: "Profile",
         activeIcon: "assets/images/vuesax_linear_profile-circle (1).svg",
         deactiveIcon: "assets/images/profile-circle (1).svg",
-        page: ProfileWrapper())
+        page: const ProfileWrapper())
   ];
 
   setActive(int index) {

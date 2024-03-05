@@ -15,10 +15,10 @@ class ProfileProvider extends ChangeNotifier {
       case "trans":
         {}
       case "notif":
-        {Navigator.of(context).push(MaterialPageRoute(builder: (context) => NotificationScreen() ));}
+        {Navigator.of(context).push(MaterialPageRoute(builder: (context) => const NotificationScreen() ));}
       case "card":
         {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => CardScreenWrapper() ));
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CardScreenWrapper() ));
         }
       case "ref":
         {}

@@ -14,8 +14,8 @@ class ThemeProvider extends ChangeNotifier {
 
 final ThemeData lightTheme = ThemeData.light().copyWith(
     colorScheme: const ColorScheme.light()
-        .copyWith(background: Colors.white, primary: Ca.primary));
+        .copyWith(background: Colors.white, primary: Ca.primary),);
 
 final ThemeData darkTheme = ThemeData().copyWith(
     colorScheme: const ColorScheme.dark()
-        .copyWith(background: Ca.prishade1, primary: Ca.primary));
+        .copyWith(background: Ca.prishade1, primary: Ca.primary),);

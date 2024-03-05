@@ -29,7 +29,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           height: 24,
           child: back? FittedBox(
             fit: BoxFit.scaleDown,
-            child: SvgPicture.asset("assets/images/arrow-square-right.svg"),
+            child: SvgPicture.asset("assets/images/arrow-square-right.svg",width: 24,height: 24,),
           ) : null,
         ),
       ),

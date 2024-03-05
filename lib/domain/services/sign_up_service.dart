@@ -4,6 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 import 'package:todelete2/presentation/screens/sign_in_screen.dart';
+import 'package:todelete2/presentation/screens/main_screen.dart';
 
 class SignUpService extends ChangeNotifier {
   String fio = "";
@@ -47,7 +48,9 @@ class SignUpService extends ChangeNotifier {
     check();
   }
 
-  signUp() {}
+  signUp(context) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const MainScreenWrapper() ));
+  }
 
   signIn(context) {
     Navigator.of(context).pushReplacement(

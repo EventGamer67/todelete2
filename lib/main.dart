@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -35,11 +36,18 @@ class MyApp extends StatelessWidget {
             create: (context) => ThemeProvider())
       ],
       builder: (context, child) {
-        return MaterialApp(
-            title: 'Flutter Demo',
-            debugShowCheckedModeBanner: false,
-            theme: Provider.of<ThemeProvider>(context).theme,
-            home: const SplashScreen());
+        return ScreenUtilInit(
+            minTextAdapt: true,
+            splitScreenMode: true,
+            designSize: const Size(390, 844),
+            builder: (context, child) {
+              return MaterialApp(
+                  title: 'Flutter Demo',
+                  debugShowCheckedModeBanner: false,
+                  theme: Provider.of<ThemeProvider>(context).theme,
+                  home: child);
+            },
+            child: const SplashScreen());
       },
     );
   }

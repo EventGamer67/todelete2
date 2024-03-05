@@ -147,7 +147,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         height: 46,
                         enabled: model.correct,
                         onTap: () {
-                          model.signUp();
+                          model.signUp(context);
                         }),
                     const SizedBox(
                       height: 20,

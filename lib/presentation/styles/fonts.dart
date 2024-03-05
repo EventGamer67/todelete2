@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 abstract class Ca {
@@ -18,41 +19,44 @@ abstract class Ca {
 
 abstract class Fa {
   static final TextStyle primary_700_24 = GoogleFonts.roboto(
-      fontSize: 24, fontWeight: FontWeight.w700, color: Ca.primary);
+      fontSize: 24.sp, fontWeight: FontWeight.w700, color: Ca.primary);
 
   static final TextStyle text4_400_16 = GoogleFonts.roboto(
-      fontSize: 14, fontWeight: FontWeight.w400, color: Ca.text4);
+      fontSize: 14.sp, fontWeight: FontWeight.w400, color: Ca.text4);
+
+  static final TextStyle text4_400_12 = GoogleFonts.roboto(
+      fontSize: 12.sp, fontWeight: FontWeight.w400, color: Ca.text4);
 
   static final TextStyle text4_500_14 = GoogleFonts.roboto(
-      fontSize: 14, fontWeight: FontWeight.w500, color: Ca.text4);
+      fontSize: 14.sp, fontWeight: FontWeight.w500, color: Ca.text4);
 
   static final TextStyle text4_600_14 = GoogleFonts.roboto(
-      fontSize: 14, fontWeight: FontWeight.w600, color: Ca.text4);
+      fontSize: 14.sp, fontWeight: FontWeight.w600, color: Ca.text4);
 
   static final TextStyle text4_500_16 = GoogleFonts.roboto(
-      fontSize: 16, fontWeight: FontWeight.w500, color: Ca.text4);
+      fontSize: 16.sp, fontWeight: FontWeight.w500, color: Ca.text4);
 
   static final TextStyle gray2_500_14 = GoogleFonts.roboto(
-      fontSize: 14, fontWeight: FontWeight.w500, color: Ca.gray2);
+      fontSize: 14.sp, fontWeight: FontWeight.w500, color: Ca.gray2);
 
   static final TextStyle gray2_500_16 = GoogleFonts.roboto(
-      fontSize: 16, fontWeight: FontWeight.w500, color: Ca.gray2);
+      fontSize: 16.sp, fontWeight: FontWeight.w500, color: Ca.gray2);
 
   static final TextStyle gray2_500_12 = GoogleFonts.roboto(
-      fontSize: 12, fontWeight: FontWeight.w500, color: Ca.gray2);
+      fontSize: 12.sp, fontWeight: FontWeight.w500, color: Ca.gray2);
 
   static final TextStyle gray2_400_14 = GoogleFonts.roboto(
-      fontSize: 14, fontWeight: FontWeight.w400, color: Ca.gray2);
+      fontSize: 14.sp, fontWeight: FontWeight.w400, color: Ca.gray2);
 
   static final TextStyle gray2_400_12 = GoogleFonts.roboto(
-      fontSize: 12, fontWeight: FontWeight.w400, color: Ca.gray2);
+      fontSize: 12.sp, fontWeight: FontWeight.w400, color: Ca.gray2);
 
   static final TextStyle gray1_400_12 = GoogleFonts.roboto(
-      fontSize: 12, fontWeight: FontWeight.w400, color: Ca.gray1);
+      fontSize: 12.sp, fontWeight: FontWeight.w400, color: Ca.gray1);
 
   static final TextStyle gray1_500_14 = GoogleFonts.roboto(
-      fontSize: 14, fontWeight: FontWeight.w500, color: Ca.gray1);
+      fontSize: 14.sp, fontWeight: FontWeight.w500, color: Ca.gray1);
 
   static final TextStyle yellow_400_12 = GoogleFonts.roboto(
-      fontSize: 12, fontWeight: FontWeight.w400, color: Ca.yellow);
+      fontSize: 12.sp, fontWeight: FontWeight.w400, color: Ca.yellow);
 }

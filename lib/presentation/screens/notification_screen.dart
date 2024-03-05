@@ -20,6 +20,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
       appBar: const MyAppBar(back: true, tittle: "Notification"),
       backgroundColor: themeProvider.isDark ? Ca.prishade1 : Colors.white,
       body: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           const SizedBox(
             height: 120,
@@ -27,13 +28,16 @@ class _NotificationScreenState extends State<NotificationScreen> {
           Container(
               alignment: Alignment.center,
               child: SvgPicture.asset(
-                  "assets/images/vuesax_linear_notification-2.svg", color: themeProvider.isDark ? Colors.white : Ca.gray2,)),
+                "assets/images/vuesax_linear_notification-2.svg",
+                color: themeProvider.isDark ? Colors.white : Ca.gray2,
+              )),
           const SizedBox(
             height: 18,
           ),
           Text(
             "You have no notifications",
-            style: Fa.text4_500_16.copyWith(color: themeProvider.isDark ? Colors.white : Ca.text4),
+            style: Fa.text4_500_16.copyWith(
+                color: themeProvider.isDark ? Colors.white : Ca.text4),
           )
         ],
       ),

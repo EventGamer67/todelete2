@@ -5,6 +5,9 @@ import 'package:get_it/get_it.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 
 class SendAPackageProvider extends ChangeNotifier {
+  TextEditingController address = TextEditingController();
+  TextEditingController country = TextEditingController();
+
   List<Package> packages = [Package()];
 
   appendNewDestination() {
@@ -42,10 +45,8 @@ class SendAPackageProvider extends ChangeNotifier {
     GetIt.I.get<Talker>().debug(pos);
     Placemark mark =
         (await placemarkFromCoordinates(pos.latitude, pos.longitude))[0];
-    GetIt.I.get<Talker>().debug(mark.country);
-    GetIt.I.get<Talker>().debug(mark.street);
-    GetIt.I.get<Talker>().debug(mark.subAdministrativeArea);
-    GetIt.I.get<Talker>().debug(mark.postalCode);
+    address.text = "${mark.street} ${mark.name}";
+    country.text = "${mark.country}";
     notifyListeners();
   }
 }

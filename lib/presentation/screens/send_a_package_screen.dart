@@ -14,7 +14,7 @@ class SendAPackageWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => SendAPackageProvider(),
+      create: (context) => SendAPackageProvider(context),
       child: const SendAPackageScreen(),
     );
   }
@@ -375,12 +375,14 @@ class OriginDetails extends StatelessWidget {
           onChanged: (value) {
             provider.packages[0].origin.address = value;
           },
+          controller: provider.address,
           hint: "Address",
         ),
         SizedBox(
           height: 5.h,
         ),
         MyTextField(
+          controller: provider.country,
           onChanged: (value) {
             provider.packages[0].origin.stateCounty = value;
           },
@@ -412,11 +414,12 @@ class OriginDetails extends StatelessWidget {
 class MyTextField extends StatelessWidget {
   final Function onChanged;
   final String hint;
-  const MyTextField({
-    super.key,
-    required this.onChanged,
-    required this.hint,
-  });
+  final TextEditingController? controller;
+  const MyTextField(
+      {super.key,
+      required this.onChanged,
+      required this.hint,
+      this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -427,6 +430,7 @@ class MyTextField extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(8.w, 0.h, 8.h, 0.w),
           child: Center(
             child: TextField(
+              controller: controller,
               style: Fa.text4_400_12,
               onChanged: (value) => onChanged(value),
               textAlignVertical: TextAlignVertical.center,

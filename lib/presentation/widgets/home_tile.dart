@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:todelete2/domain/services/home_page_provider.dart';
@@ -7,9 +7,10 @@ import 'package:todelete2/presentation/styles/fonts.dart';
 
 class HomeTile extends StatefulWidget {
   final HomeTileModel data;
-  
+
   const HomeTile({
-    super.key, required this.data,
+    super.key,
+    required this.data,
   });
 
   @override
@@ -30,9 +31,9 @@ class _HomeTIleState extends State<HomeTile> {
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 150),
-        width: 159,
+        width: 159.w,
         padding: const EdgeInsets.all(8),
-        height: 159,
+        height: 159.h,
         decoration: BoxDecoration(
             color: selected ? Ca.primary : const Color(0xFFF2F2F2),
             boxShadow: [
@@ -50,19 +51,19 @@ class _HomeTIleState extends State<HomeTile> {
               widget.data.image,
               color: selected ? Colors.white : Ca.primary,
             ),
-            const SizedBox(
-              height: 6,
+            SizedBox(
+              height: 6.h,
             ),
             Text(
               widget.data.tittle,
               style: Fa.text4_500_16
                   .copyWith(color: selected ? Colors.white : Ca.primary),
             ),
-            const SizedBox(
-              height: 6,
+            SizedBox(
+              height: 6.h,
             ),
             SizedBox(
-              width: 127,
+              width: 127.w,
               child: Text(
                 widget.data.des,
                 style: Fa.text4_400_16.copyWith(

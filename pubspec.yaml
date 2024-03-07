@@ -56,6 +56,8 @@ dependencies:
   cached_network_image: ^3.3.1
   syncfusion_flutter_pdfviewer: ^24.1.46
   flutter_screenutil: ^5.9.0
+  geocoding: ^2.2.0
+  geolocator: ^11.0.0
 
 dev_dependencies:
   flutter_test:

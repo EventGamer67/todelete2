@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'package:talker_flutter/talker_flutter.dart';
@@ -9,6 +10,12 @@ import 'package:todelete2/domain/services/send_a_package_provider.dart';
 import 'package:todelete2/presentation/styles/fonts.dart';
 import 'package:todelete2/presentation/styles/themes.dart';
 import 'package:todelete2/presentation/widgets/myappbar_widget.dart';
+import 'package:geolocator/geolocator.dart';
+
+/// Determine the current position of the device.
+///
+/// When the location services are not enabled or permissions
+/// are denied the `Future` will return an error.
 
 class SendAPackageWrapper extends StatelessWidget {
   const SendAPackageWrapper({super.key});
@@ -16,7 +23,7 @@ class SendAPackageWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => SendAPackageProvider(),
+      create: (context) => SendAPackageProvider(context),
       child: const SendAPackageScreen(),
     );
   }
@@ -204,10 +211,12 @@ class OriginDetails extends StatelessWidget {
 class MyTextField extends StatelessWidget {
   final Function onChanged;
   final String hint;
+  final TextEditingController? controller;
   const MyTextField({
     super.key,
     required this.onChanged,
     required this.hint,
+    this.controller
   });
 
   @override
@@ -219,6 +228,7 @@ class MyTextField extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(8.w, 0.h, 8.h, 0.w),
           child: Center(
             child: TextField(
+              controller: controller,
               onChanged: (value) => onChanged(value),
               textAlignVertical: TextAlignVertical.center,
               decoration: InputDecoration.collapsed(

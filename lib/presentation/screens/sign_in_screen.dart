@@ -68,6 +68,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     const SizedBox(
                       height: 17,
                     ),
+                    
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

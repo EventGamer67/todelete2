@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todelete2/domain/services/otp_service.dart';
+import 'package:todelete2/domain/providers/otp_service.dart';
+import 'package:pinput/pinput.dart';
 import 'package:todelete2/presentation/styles/fonts.dart';
 import 'package:todelete2/presentation/widgets/mybutton_widget.dart';
 import 'package:todelete2/presentation/widgets/screen_header_widget.dart';
-import 'package:pinput/pinput.dart';
 
 class OTPWrapper extends StatelessWidget {
   const OTPWrapper({super.key});

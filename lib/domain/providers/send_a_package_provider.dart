@@ -3,10 +3,22 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get_it/get_it.dart';
 import 'package:talker_flutter/talker_flutter.dart';
+import 'package:todelete2/presentation/screens/screens/send_a_package_receipt.dart';
+import 'package:todelete2/presentation/screens/screens/transaction_screen.dart';
 
 class SendAPackageProvider extends ChangeNotifier {
   TextEditingController address = TextEditingController();
   TextEditingController country = TextEditingController();
+
+  goToReceipt(BuildContext context) {
+    // Navigator.of(context).push(MaterialPageRoute(
+    //     builder: (context) => const SendAPackageReceiptScreen()));
+  }
+
+  goToTransaction(BuildContext context) {
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => const TransactionScreen()));
+  }
 
   List<Package> packages = [Package()];
 

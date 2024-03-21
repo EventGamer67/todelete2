@@ -6,9 +6,14 @@ import 'package:todelete2/domain/providers/main_provider.dart';
 import 'package:todelete2/presentation/styles/fonts.dart';
 import 'package:todelete2/presentation/styles/themes.dart';
 
-class MainScreenWrapper extends StatelessWidget {
+class MainScreenWrapper extends StatefulWidget {
   const MainScreenWrapper({super.key});
 
+  @override
+  State<MainScreenWrapper> createState() => _MainScreenWrapperState();
+}
+
+class _MainScreenWrapperState extends State<MainScreenWrapper> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -72,11 +77,9 @@ class _MainScreenState extends State<MainScreen> {
                             const SizedBox(
                               height: 8,
                             ),
-                            SvgPicture.asset(
-                              index == provider.currentIndex
-                                  ? provider.bar[index].activeIcon
-                                  : provider.bar[index].deactiveIcon,
-                            ),
+                            SvgPicture.asset(index == provider.currentIndex
+                                ? provider.bar[index].activeIcon
+                                : provider.bar[index].deactiveIcon,),
                             FittedBox(
                               child: Text(
                                 provider.bar[index].name,

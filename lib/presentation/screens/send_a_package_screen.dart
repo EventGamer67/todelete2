@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:todelete2/domain/services/send_a_package_provider.dart';
+import 'package:todelete2/domain/providers/send_a_package_provider.dart';
 import 'package:todelete2/presentation/styles/fonts.dart';
 import 'package:todelete2/presentation/styles/themes.dart';
 import 'package:todelete2/presentation/widgets/myappbar_widget.dart';
@@ -72,7 +72,12 @@ class _SendAPackageScreenState extends State<SendAPackageScreen> {
                   width: double.infinity,
                   height: 46,
                   enabled: true,
-                  onTap: () {})
+                  onTap: () {
+                    provider.goToReceipt(context);
+                  }),
+              const SizedBox(
+                height: 30,
+              )
             ],
           ),
         ),
@@ -161,7 +166,7 @@ class DeliveryType extends StatelessWidget {
               ),
             ],
           ),
-        )
+        ),
       ],
     );
   }

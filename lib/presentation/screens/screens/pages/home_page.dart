@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -7,14 +6,9 @@ import 'package:todelete2/presentation/styles/fonts.dart';
 import 'package:todelete2/presentation/styles/themes.dart';
 import 'package:todelete2/presentation/widgets/home_tile.dart';
 
-class HomePageWrapper extends StatefulWidget {
+class HomePageWrapper extends StatelessWidget {
   const HomePageWrapper({super.key});
 
-  @override
-  State<HomePageWrapper> createState() => _HomePageWrapperState();
-}
-
-class _HomePageWrapperState extends State<HomePageWrapper> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -126,100 +120,85 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 39,
               ),
-              SpecialForYouBlock(),
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Special for you",
+                        style: Fa.text4_500_14.copyWith(color: Ca.secondary),
+                      ),
+                      SvgPicture.asset("assets/images/arrow-square-right-2.svg")
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 7,
+                  ),
+                  SizedBox(
+                    height: 64,
+                    child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: provider.tiles.length,
+                        scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            width: 166,
+                            height: 64,
+                            margin: const EdgeInsets.only(right: 12),
+                            decoration: BoxDecoration(
+                                image: const DecorationImage(
+                                    image: AssetImage(
+                                        "assets/images/Frame 50.png"),
+                                    fit: BoxFit.cover),
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(8)),
+                                border:
+                                    Border.all(width: 1, color: Ca.secondary)),
+                          );
+                        }),
+                  ),
+                  const SizedBox(
+                    height: 29,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "What would you like to do",
+                            style: Fa.gray1_500_14.copyWith(color: Ca.primary),
+                          )),
+                      const SizedBox(
+                        height: 9,
+                      ),
+                      GridView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 23,
+                                  mainAxisSpacing: 23),
+                          itemCount: provider.tiles.length,
+                          itemBuilder: (context, index) {
+                            return HomeTile(
+                              data: provider.tiles[index],
+                            );
+                          })
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 45,
+                  )
+                ],
+              ),
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-class SpecialForYouBlock extends StatefulWidget {
-  const SpecialForYouBlock({
-    super.key,
-  });
-
-  @override
-  State<SpecialForYouBlock> createState() => _SpecialForYouBlockState();
-}
-
-class _SpecialForYouBlockState extends State<SpecialForYouBlock> {
-  @override
-  Widget build(BuildContext context) {
-    HomePageProvider provider =
-        Provider.of<HomePageProvider>(context, listen: true);
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "Special for you",
-              style: Fa.text4_500_14.copyWith(color: Ca.secondary),
-            ),
-            SvgPicture.asset("assets/images/arrow-square-right-2.svg")
-          ],
-        ),
-        const SizedBox(
-          height: 7,
-        ),
-        SizedBox(
-          height: 64,
-          child: ListView.builder(
-              physics: const BouncingScrollPhysics(),
-              itemCount: provider.ads.length,
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return Container(
-                  width: 166,
-                  height: 64,
-                  margin: const EdgeInsets.only(right: 12),
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: CachedNetworkImageProvider(
-                              provider.ads[index].image),
-                          fit: BoxFit.cover),
-                      borderRadius: const BorderRadius.all(Radius.circular(8)),
-                      border: Border.all(width: 1, color: Ca.secondary)),
-                );
-              }),
-        ),
-        const SizedBox(
-          height: 29,
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "What would you like to do",
-                  style: Fa.gray1_500_14.copyWith(color: Ca.primary),
-                )),
-            const SizedBox(
-              height: 9,
-            ),
-            GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 23,
-                    mainAxisSpacing: 23),
-                itemCount: provider.tiles.length,
-                itemBuilder: (context, index) {
-                  return HomeTile(
-                    data: provider.tiles[index],
-                  );
-                })
-          ],
-        ),
-        const SizedBox(
-          height: 45,
-        )
-      ],
     );
   }
 }

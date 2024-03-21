@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:talker_flutter/talker_flutter.dart';
+import 'package:todelete2/domain/providers/base_provider.dart';
 import 'package:todelete2/presentation/styles/themes.dart';
 import 'package:todelete2/presentation/screens/splash_screen.dart';
 
@@ -32,6 +33,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider<BaseProvider>(
+          create: (context) => BaseProvider(),
+        ),
         ChangeNotifierProvider<ThemeProvider>(
             create: (context) => ThemeProvider())
       ],

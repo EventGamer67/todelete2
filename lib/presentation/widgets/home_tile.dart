@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:todelete2/domain/services/home_page_provider.dart';
+import 'package:todelete2/domain/providers/home_page_provider.dart';
 import 'package:todelete2/presentation/styles/fonts.dart';
 
 class HomeTile extends StatefulWidget {

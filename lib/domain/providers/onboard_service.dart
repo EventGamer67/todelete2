@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:todelete2/entity/boardpage_model.dart';
+import 'package:todelete2/data/model/boardpage_model.dart';
 import 'package:todelete2/presentation/screens/sign__up_screen.dart';
 
 class OnBoardService extends ChangeNotifier {

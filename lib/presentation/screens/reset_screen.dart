@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todelete2/domain/services/reset_service.dart';
+import 'package:todelete2/domain/providers/reset_service.dart';
 import 'package:todelete2/presentation/widgets/mybutton_widget.dart';
 import 'package:todelete2/presentation/widgets/mytextfield_widget.dart';
 import 'package:todelete2/presentation/widgets/screen_header_widget.dart';

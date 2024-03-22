@@ -113,8 +113,9 @@ class _OnBoardScreenState extends State<OnBoardScreen>
                     ),
                   ],
                 ),
+                const SizedBox(height: 99),
               ],
-            ),
+            )
           ],
         ),
       ),

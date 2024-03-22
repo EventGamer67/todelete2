@@ -7,7 +7,7 @@ import 'package:todelete2/presentation/screens/notification_screen.dart';
 import 'package:todelete2/presentation/styles/fonts.dart';
 
 class ProfileProvider extends ChangeNotifier {
-  tapTile(BuildContext context,String tag) {
+  tapTile(BuildContext context, String tag) {
     GetIt.I.get<Talker>().debug(tag);
     switch (tag) {
       case "edit":
@@ -15,10 +15,14 @@ class ProfileProvider extends ChangeNotifier {
       case "trans":
         {}
       case "notif":
-        {Navigator.of(context).push(MaterialPageRoute(builder: (context) => const NotificationScreen() ));}
+        {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const NotificationScreen()));
+        }
       case "card":
         {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CardScreenWrapper() ));
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const CardScreenWrapper()));
         }
       case "ref":
         {}

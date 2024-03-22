@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:talker_flutter/talker_flutter.dart';
+import 'package:todelete2/domain/providers/base_provider.dart';
 import 'package:todelete2/presentation/screens/sign_in_screen.dart';
 import 'package:todelete2/presentation/screens/main_screen.dart';
 
@@ -48,8 +50,12 @@ class SignUpService extends ChangeNotifier {
     check();
   }
 
-  signUp(context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const MainScreenWrapper() ));
+  signUp(BuildContext context) {
+    if (Provider.of<BaseProvider>(context, listen: false)
+        .checkInternet(context)) {
+      Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => const MainScreenWrapper()));
+    }
   }
 
   signIn(context) {

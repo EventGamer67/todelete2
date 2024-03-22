@@ -1,10 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:todelete2/domain/providers/base_provider.dart';
 import 'package:todelete2/domain/providers/profile_provider.dart';
 import 'package:todelete2/presentation/styles/fonts.dart';
 import 'package:todelete2/presentation/styles/themes.dart';
@@ -36,10 +34,7 @@ class _ProfilePageState extends State<ProfilePage> {
     ProfileProvider provider = context.watch<ProfileProvider>();
     return Scaffold(
       backgroundColor: themeProvider.isDark ? Ca.prishade1 : Colors.white,
-      appBar: const MyAppBar(
-        tittle: "Profile",
-        back: false,
-      ),
+      appBar: const MyAppBar(tittle: "Profile", back: false,),
       body: SafeArea(
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
@@ -70,8 +65,8 @@ class _ProfilePageState extends State<ProfilePage> {
                           return Column(
                             children: [
                               GestureDetector(
-                                onTap: () => provider.tapTile(
-                                    context, provider.tiles[index].tag),
+                                onTap: () =>
+                                    provider.tapTile(context,provider.tiles[index].tag),
                                 child: Container(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 12),
@@ -208,27 +203,23 @@ class _ProfileBlockState extends State<ProfileBlock> {
   @override
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = context.watch<ThemeProvider>();
-    BaseProvider baseProvider = context.watch<BaseProvider>();
     return Container(
       height: 75,
       padding: const EdgeInsets.fromLTRB(10, 7.5, 10, 7.5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          GestureDetector(
-            onTap: () => baseProvider.switchAvatar(),
-            child: Container(
-              width: 60,
-              height: 60,
-              decoration: BoxDecoration(
-                  border: Border.all(
-                      color: Ca.gray1,
-                      width: 1,
-                      strokeAlign: BorderSide.strokeAlignInside),
-                  shape: BoxShape.circle,
-                  image: const DecorationImage(
-                      image: AssetImage("assets/images/latest.png"))),
-            ),
+          Container(
+            width: 60,
+            height: 60,
+            decoration: BoxDecoration(
+                border: Border.all(
+                    color: Ca.gray1,
+                    width: 1,
+                    strokeAlign: BorderSide.strokeAlignInside),
+                shape: BoxShape.circle,
+                image: const DecorationImage(
+                    image: AssetImage("assets/images/latest.png"))),
           ),
           const SizedBox(
             width: 5,

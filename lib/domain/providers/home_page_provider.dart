@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:talker_flutter/talker_flutter.dart';
+import 'package:todelete2/presentation/screens/screens/chat_screen.dart';
 
 import 'package:todelete2/presentation/screens/send_a_package_screen.dart';
-
 
 class Advertisment {
   final String image;
@@ -56,7 +56,7 @@ class HomePageProvider extends ChangeNotifier {
     GetIt.I.get<Talker>().debug(data);
 
     ads = parse<Advertisment>(data, Advertisment.fromMap);
-    ads.sort((a,b) => a.id - b.id );
+    ads.sort((a, b) => a.id - b.id);
     GetIt.I.get<Talker>().debug(ads[0].image);
     notifyListeners();
   }
@@ -67,6 +67,11 @@ class HomePageProvider extends ChangeNotifier {
         {
           Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => const SendAPackageWrapper()));
+        }
+      case "chat":
+        {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const ChatWrapper()));
         }
     }
   }
@@ -93,7 +98,7 @@ class HomePageProvider extends ChangeNotifier {
         image: "assets/images/Vector-3.svg",
         tittle: "Chats",
         des: "Search for available rider within your area",
-        tag: "customer")
+        tag: "chat")
   ];
 }
 

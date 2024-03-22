@@ -1,7 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get_it/get_it.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:todelete2/domain/providers/chat_provider.dart' as pr;
 import 'package:todelete2/domain/providers/home_page_provider.dart';
 import 'package:todelete2/presentation/styles/fonts.dart';
 import 'package:todelete2/presentation/styles/themes.dart';
@@ -36,6 +41,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final themeProvider = context.watch<ThemeProvider>();
     final provider = context.watch<HomePageProvider>();
+    final chat = context.watch<pr.ChatProvider>();
     return Scaffold(
       backgroundColor: themeProvider.theme.colorScheme.background,
       body: SingleChildScrollView(
@@ -79,23 +85,77 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    image: const DecorationImage(
+                    image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: AssetImage(
-                          "assets/images/ProfileInfo.png",
+                        image: CachedNetworkImageProvider(
+                          chat.users
+                              .where((element) =>
+                                  element.userUID ==
+                                  "645718b6-32e8-4c38-86ea-3bce5a1a5adf")
+                              .first
+                              .avatar,
                         ))),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      width: 60,
-                      height: 60,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: const DecorationImage(
-                            image: AssetImage("assets/images/Frame 83.png"),
-                          ),
-                          border: Border.all(width: 1, color: Ca.gray1)),
+                    GestureDetector(
+                      onTap: () async {
+                        ImagePicker picker = ImagePicker();
+                        XFile? file =
+                            await picker.pickImage(source: ImageSource.gallery);
+                        if (file != null) {
+                          String code = GetIt.I
+                              .get<Supabase>()
+                              .client
+                              .auth
+                              .currentUser!
+                              .id;
+                          await GetIt.I
+                              .get<Supabase>()
+                              .client
+                              .storage
+                              .from("dsa")
+                              .remove(["${code}/${file.name}"]);
+                          await GetIt.I
+                              .get<Supabase>()
+                              .client
+                              .storage
+                              .from("dsa")
+                              .uploadBinary(
+                                  fileOptions: FileOptions(upsert: true),
+                                  "${code}/${file.name}",
+                                  await file.readAsBytes());
+                          String url = GetIt.I
+                              .get<Supabase>()
+                              .client
+                              .storage
+                              .from('dsa')
+                              .getPublicUrl("${code}/${file.name}");
+                          GetIt.I
+                              .get<Supabase>()
+                              .client
+                              .from('Users')
+                              .update({"avatar": "${url}"}).eq('user',
+                                  "645718b6-32e8-4c38-86ea-3bce5a1a5adf");
+                          pr.User us = chat.users
+                              .where((element) =>
+                                  element.userUID ==
+                                  "645718b6-32e8-4c38-86ea-3bce5a1a5adf")
+                              .first;
+                          us.avatar = url;
+                          setState(() {});
+                        }
+                      },
+                      child: Container(
+                        width: 60,
+                        height: 60,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: const DecorationImage(
+                              image: AssetImage("assets/images/Frame 83.png"),
+                            ),
+                            border: Border.all(width: 1, color: Ca.gray1)),
+                      ),
                     ),
                     Expanded(
                         child: Column(

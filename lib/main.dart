@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 import 'package:todelete2/domain/providers/base_provider.dart';
+import 'package:todelete2/domain/providers/chat_provider.dart';
 import 'package:todelete2/presentation/styles/themes.dart';
 import 'package:todelete2/presentation/screens/splash_screen.dart';
 
@@ -35,6 +36,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<BaseProvider>(
           create: (context) => BaseProvider(),
+        ),
+        ChangeNotifierProvider<ChatProvider>(
+          create: (context) => ChatProvider(context),
         ),
         ChangeNotifierProvider<ThemeProvider>(
             create: (context) => ThemeProvider())
